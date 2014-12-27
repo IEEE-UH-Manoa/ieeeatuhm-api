@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/IEEE-UH-Manoa/ieeeatuhm-api.png?label=ready&title=Ready)](https://waffle.io/IEEE-UH-Manoa/ieeeatuhm-api)
 ieeeatuhm-api
 =============
 
