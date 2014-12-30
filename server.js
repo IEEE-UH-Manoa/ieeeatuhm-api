@@ -27,7 +27,7 @@ server.get('/events', function (req, res, next) {
   var options = {
     key: testURL,
     debug: true,
-    callback: function(data, tabletop, req, rest, next){
+    callback: function(data, tabletop){
       res.send(data['2014-2015'].elements);
       }
   };
