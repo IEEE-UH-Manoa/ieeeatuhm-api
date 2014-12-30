@@ -22,3 +22,5 @@ development of the IEEE Student Branch at UHM android application.
 5. Integrates IEEE Points/Rewards System
 8. Provides an aggregated news feed of IEEE-related events
 6. Allows users and applications to participate in elections and polling
+
+
