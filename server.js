@@ -37,6 +37,22 @@ server.get('/events', function (req, res, next) {
 
 });
 
+server.get('/about', function (req, res, next) {
+
+  var options = {
+    key: 'https://docs.google.com/spreadsheets/d/13VHmI6cCaqyxMpohc9gKj7-08D8Gdw7AWyrFfmnvdNE/pubhtml?gid=0&single=true',
+    debug: true,
+    simpleSheet: true,
+    callback: function(data, tabletop){
+      res.send(data);
+    }
+  };
+
+  Tabletop.init(options);
+  return next();
+
+});
+
 server.listen(16906, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
