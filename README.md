@@ -24,3 +24,26 @@ development of the IEEE Student Branch at UHM android application.
 - [ ] Allows users and applications to participate in elections and polling
 
 
+# Contributing 
+
+Since this is an open source project for the community, contributions are more than welcome! If you
+have any comments, please open up an issue. If you wish to contribute, fork the repository make 
+your changes and submit a merge request. 
+
+If you're new to web development but you've taken a programming course before (EE 160 perhaps?), here
+are some concepts that you should be familiar with before getting involved with this particular project:
+
+* Javascript
+* Asynchronous Callbacks
+* Node.js
+* Git
+* GitHub
+* Git Flow 
+
+If you're completely new to development or you're looking to learn some of the concepts above, stop
+by the IEEE chatroom (chat.ieeeatuhm.com) and ping me (Kenny Luong) for some help. I'll be more than
+happy to point you in the right direction.
+
+
+
+
