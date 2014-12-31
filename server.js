@@ -2,8 +2,8 @@ var restify = require('restify');
 var Tabletop = require('tabletop');
 
 var server = restify.createServer({
-  name: 'myapp',
-  version: '1.0.0'
+  name: 'ieee-app',
+  version: '0.0.1'
 });
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
