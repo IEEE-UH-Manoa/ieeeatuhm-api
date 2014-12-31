@@ -1,5 +1,7 @@
 var restify = require('restify');
 var Tabletop = require('tabletop');
+var Trello = require("node-trello");
+var t = new Trello(process.env.IEEE_TRELLO_KEY);
 
 var server = restify.createServer({
   name: 'ieee-app',
@@ -23,6 +25,9 @@ var aboutSheetURL = 'https://docs.google.com/spreadsheets/d/13VHmI6cCaqyxMpohc9g
 server.get('/events', fetchEvents);
 server.get('/about', fetchAbout);
 server.get('/', sayHello);
+server.get('/tasks', fetchTasks);
+server.get('/cards', fetchAllTrelloBoards);
+server.get('/boards', fetchAllTrelloBoards);
 
 
 // =======================
@@ -30,6 +35,35 @@ server.get('/', sayHello);
 // =======================
 function sayHello(req, res, next){
   res.send("Hello, World!");
+  return next();
+}
+
+
+// Executive Board - 52d24b88a110cd7b3d37fcab
+// In Progress List - 5410b46b66a71be7104f02a2
+// Describes some of the current in-progress tasks
+function fetchTasks(req, res, next){
+  t.get("/1/lists/5410b46b66a71be7104f02a2/cards", function(err, data){
+    var results = [];
+    for(var i = 0; i < data.length; i++){
+        results.push(data[i].name);
+    }
+    res.send(results);
+  });
+  return next();
+}
+
+function fetchAllTrelloCards(req, res, next){
+  t.get("/1/boards/52d24b88a110cd7b3d37fcab/cards", function(err, data){
+    res.send(data);
+  });
+  return next();
+}
+
+function fetchAllTrelloBoards(req, res, next){
+  t.get("/1/organizations/ieeeatuhm/boards", function(err, data){
+    res.send(data);
+  });
   return next();
 }
 
