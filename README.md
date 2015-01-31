@@ -2,7 +2,7 @@
 ieeeatuhm-api
 =============
 
-IEEE Student Branch API. 
+IEEE Student Branch API. Currently hosted at http://api.ieeeatuhm.com
 
 
 # Description
