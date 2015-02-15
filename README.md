@@ -1,6 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/IEEE-UH-Manoa/ieeeatuhm-api.png?label=ready&title=Ready)](https://waffle.io/IEEE-UH-Manoa/ieeeatuhm-api)
-
-[ ![Codeship Status for IEEE-UH-Manoa/ieeeatuhm-api](https://codeship.com/projects/7a48aa30-6d14-0132-5053-326df4eb838b/status?branch=master)](https://codeship.com/projects/54163)
+[![Stories in Ready](https://badge.waffle.io/IEEE-UH-Manoa/ieeeatuhm-api.png?label=ready&title=Ready)](https://waffle.io/IEEE-UH-Manoa/ieeeatuhm-api) [ ![Codeship Status for IEEE-UH-Manoa/ieeeatuhm-api](https://codeship.com/projects/7a48aa30-6d14-0132-5053-326df4eb838b/status?branch=master)](https://codeship.com/projects/54163)
 
 ieeeatuhm-api
 =============
