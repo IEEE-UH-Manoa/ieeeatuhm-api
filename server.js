@@ -24,6 +24,33 @@ var eventSheetURL = 'https://docs.google.com/spreadsheets/d/1RRZ_U3mcNJB3NpVmlW1
 var aboutSheetURL = 'https://docs.google.com/spreadsheets/d/13VHmI6cCaqyxMpohc9gKj7-08D8Gdw7AWyrFfmnvdNE/pubhtml?gid=0&single=true';
 
 
+function syncMongo(callback){
+    console.log(String(new Date()) + ": Attempting to sync mongodb with sheet.");
+    var options = {
+        key: eventSheetURL,
+        debug: true,
+        callback: function(data, tabletop){
+            // Smash the spreadsheet data onto the mongodb database (god help me)
+            // TODO: replace this later with something sane
+            db.myevents.update({}, { $set: {"events": data["2014-2015"].elements}}, function(err, saved){
+                if(err){
+                    console.log(String(new Date()) + ": There was an error syncing the db.");
+                    callback(false);
+                }
+                else{
+                    console.log(String(new Date()) + ": Success syncing the db.");
+                    callback(true);
+                }
+            });
+        }
+    };
+    Tabletop.init(options);
+}
+
+// Set the sync handler for every 10 minutes
+var minutes = 10, the_interval = minutes * 60 * 1000;
+setInterval(syncMongo, the_interval);
+
 // =======================
 // Routes
 // =======================
@@ -34,7 +61,15 @@ server.get('/', sayHello);
 server.get('/tasks', fetchTasks);
 server.get('/cards', fetchAllTrelloBoards);
 server.get('/boards', fetchAllTrelloBoards);
+server.get('/sync-events', syncEvents);
 
+function syncEvents(req, res, next){
+  syncMongo(function(return_state){
+    if(return_state === true ) res.send("Sync request success.");
+    else res.send("ERROR: sync request failed.");
+  });
+  return next();
+}
 
 // =======================
 // Descriptions
