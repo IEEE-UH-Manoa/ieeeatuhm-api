@@ -3,6 +3,11 @@ var Tabletop = require('tabletop');
 var Trello = require("node-trello");
 var t = new Trello(process.env.IEEE_TRELLO_KEY);
 
+var mongo_URL = process.env.IEEE_MONGO_URL;
+var collections = ['myevents'];
+var db = require('mongojs').connect(mongo_URL, collections);
+
+
 var server = restify.createServer({
   name: 'ieee-app',
   version: '0.0.1'
@@ -23,6 +28,7 @@ var aboutSheetURL = 'https://docs.google.com/spreadsheets/d/13VHmI6cCaqyxMpohc9g
 // Routes
 // =======================
 server.get('/events', fetchEvents);
+server.get('/events-mongo', fetchEventsMongodb);
 server.get('/about', fetchAbout);
 server.get('/', sayHello);
 server.get('/tasks', fetchTasks);
@@ -65,6 +71,17 @@ function fetchAllTrelloBoards(req, res, next){
     res.send(data);
   });
   return next();
+}
+
+function fetchEventsMongodb(req, res, next){
+    db.myevents.find(function(err, events){
+        if(err){
+            console.log("There was an error");
+        }
+        else{
+            console.log(events);
+        }
+    }
 }
 
 function fetchEvents(req, res, next){
