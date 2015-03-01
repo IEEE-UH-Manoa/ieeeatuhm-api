@@ -79,9 +79,9 @@ function fetchEventsMongodb(req, res, next){
             console.log("There was an error");
         }
         else{
-            console.log(events);
+            res.send(events);
         }
-    }
+    });
     return next();
 }
 
