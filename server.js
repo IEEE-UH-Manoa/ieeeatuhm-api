@@ -82,6 +82,7 @@ function fetchEventsMongodb(req, res, next){
             console.log(events);
         }
     }
+    return next();
 }
 
 function fetchEvents(req, res, next){
