@@ -46,5 +46,47 @@ by the IEEE chatroom (chat.ieeeatuhm.com) and ping me (Kenny Luong) for some hel
 happy to point you in the right direction.
 
 
+# Reference
 
+## GET /
+
+__Description:__
+
+Default route. 
+
+## GET /events
+
+__Description:__
+
+Returns all of the events in the IEEE @ UHM database. Backend soon
+to be switched to mongodb.
+
+
+## GET /events-mongo
+
+Returns all of the events in the IEEE @ UHM database via mongodb.
+
+## GET /sync-events
+
+__Description:__
+
+Sync the events sheet with the mongodb backend.
+
+## GET /about
+
+__Description:__
+
+Returns something about.
+
+## GET /tasks
+
+__Description:__
+
+Returns current active tasks (via trello).
+
+## GET /cards
+
+__Description:__
+
+Returns IEEE trello cards. 
 
