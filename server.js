@@ -1,5 +1,3 @@
-var routes = require(__dirname + '/routes.js');
-
 var restify = require('restify');
 var models = require(__dirname + '/models.js');
 
