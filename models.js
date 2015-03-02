@@ -66,7 +66,7 @@ module.exports = {
                 console.log("There was an error");
             }
             else{
-                res.send(events);
+                res.send(events[0].events);
             }
         });
         return next();
