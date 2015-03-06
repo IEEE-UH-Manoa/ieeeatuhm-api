@@ -73,6 +73,20 @@ module.exports = {
     },
 
     fetchEvents: function(req, res, next){
+        db.myevents.find(function(err, events){
+            if(err){
+                console.log("There was an error");
+            }
+            else{
+                res.send(events[0].events);
+            }
+        });
+        return next();
+    },
+
+    // DEPRECIATED TABLETOP EVENTS CALL
+    /*
+    fetchEvents: function(req, res, next){
       var options = {
         key: eventSheetURL,
         debug: true,
@@ -84,6 +98,7 @@ module.exports = {
       Tabletop.init(options);
       return next();
     },
+    */
 
     fetchAbout: function(req,res,next){
       var options = {
