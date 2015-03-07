@@ -89,7 +89,7 @@ module.exports = {
                 console.log("There was an error");
             }
             else{
-                res.send(events[0].events.slice(0,7));
+                res.send(events[0].events.reverse().slice(0,7).reverse());
             }
         });
         return next();
