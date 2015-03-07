@@ -89,7 +89,17 @@ module.exports = {
                 console.log("There was an error");
             }
             else{
-                res.send(events[0].events.reverse().slice(0,7).reverse());
+                res.send(events[0].events
+                    .filter(function(an_event){
+                        var event_date = Date.parse(an_event.date);
+                        var today = new Date();
+                        var fourdays = new Date();
+                        fourdays.setDate(today.getDate() + 14);
+
+                        if( (event_date >= today) && (event_date < fourdays)) return true;
+                        else return false;
+                    })
+                );
             }
         });
         return next();
