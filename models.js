@@ -83,6 +83,17 @@ module.exports = {
         });
         return next();
     },
+    fetchEventsUpcoming: function(req, res, next){
+        db.myevents.find(function(err, events){
+            if(err){
+                console.log("There was an error");
+            }
+            else{
+                res.send(events[0].events.slice(0,7);
+            }
+        });
+        return next();
+    },
 
     // DEPRECIATED TABLETOP EVENTS CALL
     /*
