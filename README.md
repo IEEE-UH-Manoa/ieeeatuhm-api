@@ -58,13 +58,14 @@ Default route.
 
 __Description:__
 
-Returns all of the events in the IEEE @ UHM database. Backend soon
-to be switched to mongodb.
+Returns all of the events in the IEEE @ UHM database. 
 
 
 ## GET /events-mongo
 
 Returns all of the events in the IEEE @ UHM database via mongodb.
+
+* Depreciated
 
 ## GET /sync-events
 
