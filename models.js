@@ -13,8 +13,29 @@ var db = require('mongojs').connect(mongo_URL, collections);
 var eventSheetURL = 'https://docs.google.com/spreadsheets/d/1RRZ_U3mcNJB3NpVmlW1F0KbIsJWkxmxMHgC8qYDchcs/pubhtml';
 var aboutSheetURL = 'https://docs.google.com/spreadsheets/d/13VHmI6cCaqyxMpohc9gKj7-08D8Gdw7AWyrFfmnvdNE/pubhtml?gid=0&single=true';
 
+var value = 0;
 
 module.exports = {
+    getter: function(req, res, next){
+        console.log("Getter: " + value);
+        res.send(String(value));
+        return next();
+    },
+
+    updater: function(req, res, next){
+        value++;
+        console.log("Updater: " + value);
+        res.send(String(value));
+        return next();
+    },
+
+    clearer: function(req, res, next){
+        value = 0;
+        res.send(String(value));
+        console.log("Clearer: " + value);
+        return next();
+    },
+
     syncEvents: function(req, res, next){
       syncMongo(function(return_state){
         if(return_state === true ) res.send("Sync request success.");

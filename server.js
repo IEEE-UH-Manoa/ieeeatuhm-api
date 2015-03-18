@@ -23,6 +23,10 @@ server.get('/tasks', models.fetchTasks);
 server.get('/cards', models.fetchAllTrelloBoards);
 server.get('/boards', models.fetchAllTrelloBoards);
 server.get('/sync-events', models.syncEvents);
+server.get('/updater', models.updater);
+server.get('/clearer', models.clearer);
+server.get('/getter', models.getter);
+
 
 server.listen(16906, function () {
   console.log('%s listening at %s', server.name, server.url);
