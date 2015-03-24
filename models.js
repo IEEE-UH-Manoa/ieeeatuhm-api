@@ -16,26 +16,6 @@ var aboutSheetURL = 'https://docs.google.com/spreadsheets/d/13VHmI6cCaqyxMpohc9g
 var value = 0;
 
 module.exports = {
-    getter: function(req, res, next){
-        console.log("Getter: " + value);
-        res.send(String(value));
-        return next();
-    },
-
-    updater: function(req, res, next){
-        value++;
-        console.log("Updater: " + value);
-        res.send(String(value));
-        return next();
-    },
-
-    clearer: function(req, res, next){
-        value = 0;
-        res.send(String(value));
-        console.log("Clearer: " + value);
-        return next();
-    },
-
     syncEvents: function(req, res, next){
       syncMongo(function(return_state){
         if(return_state === true ) res.send("Sync request success.");
