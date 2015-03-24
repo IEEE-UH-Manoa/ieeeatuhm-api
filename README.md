@@ -14,8 +14,8 @@ development of the IEEE Student Branch at UHM android application.
 
 # Features (In order of importance)
 
-- [ ] Allows users to access generic IEEE student branch information
-- [ ] Provides IEEE at UHM Event Information (Who, when where, etc.)
+- [x] Allows users to access generic IEEE student branch information
+- [x] Provides IEEE at UHM Event Information (Who, when where, etc.)
 - [ ] Allows users to access a list of Board Agenda and Minutes 
 - [ ] Provides a log of IEEE General Board Activities
 - [ ] Gives transparent access to IEEE financial logs
