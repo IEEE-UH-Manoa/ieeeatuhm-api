@@ -11,6 +11,10 @@ IEEE Student Branch API. Currently hosted at http://api.ieeeatuhm.com
 The initial purpose of the IEEE API is to help facilitate the 
 development of the IEEE Student Branch at UHM android application.
 
+Currently, it provides:
+
+* An API for basic events handling
+* A cache for the Google Spreadsheet hosting all of the IEEE @ UHM events.
 
 # Features (In order of importance)
 
@@ -60,12 +64,12 @@ __Description:__
 
 Returns all of the events in the IEEE @ UHM database. 
 
+## GET /events-upcoming
 
-## GET /events-mongo
+__Description:__
 
-Returns all of the events in the IEEE @ UHM database via mongodb.
+Returns the next two week's worth of events in the IEEE @ UHM database
 
-* Depreciated
 
 ## GET /sync-events
 
@@ -85,9 +89,9 @@ __Description:__
 
 Returns current active tasks (via trello).
 
-## GET /cards
+## GET /boards
 
 __Description:__
 
-Returns IEEE trello cards. 
+Returns IEEE trello boards.
 

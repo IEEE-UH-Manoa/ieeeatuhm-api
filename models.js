@@ -15,6 +15,8 @@ var aboutSheetURL = 'https://docs.google.com/spreadsheets/d/13VHmI6cCaqyxMpohc9g
 
 var value = 0;
 
+var last_sync_request = 0;
+
 module.exports = {
     syncEvents: function(req, res, next){
       syncMongo(function(return_state){
@@ -139,26 +141,36 @@ module.exports = {
 
 
 function syncMongo(callback){
-    console.log(String(new Date()) + ": Attempting to sync mongodb with sheet.");
-    var options = {
-        key: eventSheetURL,
-        debug: true,
-        callback: function(data, tabletop){
-            // Smash the spreadsheet data onto the mongodb database (god help me)
-            // TODO: replace this later with something sane
-            db.myevents.update({}, { $set: {"events": data["2014-2015"].elements}}, function(err, saved){
-                if(err){
-                    console.log(String(new Date()) + ": There was an error syncing the db.");
-                    callback(false);
-                }
-                else{
-                    console.log(String(new Date()) + ": Success syncing the db.");
-                    callback(true);
-                }
-            });
-        }
-    };
-    Tabletop.init(options);
+    function update_db(data, tabletop){
+        // Smash the spreadsheet data onto the mongodb database (god help me)
+        // TODO: replace this later with something sane
+        db.myevents.update({}, { $set: {"events": data["2014-2015"].elements}}, function(err, saved){
+            if(err){
+                console.log(String(new Date()) + ": There was an error syncing the db.");
+                callback(false);
+            }
+            else{
+                console.log(String(new Date()) + ": Success syncing the db.");
+                callback(true);
+                last_sync_request = Date.now();
+            }
+        });
+    }
+
+    var rateLimitDelayMilli = 15*1000; // 15 Seconds
+    if(Date.now() - last_sync_request > rateLimitDelayMilli) {
+        console.log(String(new Date()) + ": Attempting to sync mongodb with sheet.");
+        var options = {
+            key: eventSheetURL,
+            debug: true,
+            callback: update_db
+        };
+        Tabletop.init(options);
+    }
+    else{
+        console.log("Too soon for sync request!");
+        callback(false);
+    }
 }
 
 // Set the sync handler for every 10 minutes
