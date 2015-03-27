@@ -16,7 +16,6 @@ server.use(restify.CORS());
 // =======================
 server.get('/events', models.fetchEvents);
 server.get('/events-upcoming', models.fetchEventsUpcoming);
-server.get('/events-mongo', models.fetchEventsMongodb);
 server.get('/about', models.fetchAbout);
 server.get('/', models.sayHello);
 server.get('/tasks', models.fetchTasks);
