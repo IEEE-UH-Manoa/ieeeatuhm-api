@@ -19,6 +19,8 @@
   "homepage": "https://github.com/IEEE-UH-Manoa/ieeeatuhm-api",
   "dependencies": {
     "restify": "^2.8.4",
+    "lodash": "",
+    "async": "",
     "tabletop": "^1.3.5",
     "node-trello": "",
     "mongojs": ""

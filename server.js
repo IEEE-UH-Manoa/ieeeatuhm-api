@@ -23,7 +23,9 @@ server.get('/tasks', models.fetchTasks);
 server.get('/cards', models.fetchAllTrelloBoards);
 server.get('/boards', models.fetchAllTrelloBoards);
 server.get('/sync-events', models.syncEvents);
-server.get('/eats/', eats.getEats);
+
+server.get('/eat', eats.getEat);
+server.get('/eats', eats.getEats);
 server.get('/eats/sync', eats.syncEats);
 
 
