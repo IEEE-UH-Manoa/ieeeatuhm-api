@@ -1,6 +1,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var _ = require('lodash');
+var async = require('async');
 
 var eats = [];
 
@@ -23,8 +24,7 @@ var scrapeEats = function(callback){
         callback(null, food_list);
       }
       else{
-        callback(error);
-      }
+        callback(error); }
     });
 }
 
@@ -45,6 +45,23 @@ var getRandomEat = function(callback){
 
 module.exports = {
     getEats: function(req, res, next){
+        var n = 1;
+        if(req.params.n != null)
+            n = parseInt(req.params.n);
+
+        var eats = Array(n)
+        async.map(eats,
+            function(item, callback){
+                getRandomEat(function(err, result){
+                    callback(null, result);
+                });
+            },
+            function(err, result){
+                res.send(result);
+                return next();
+        });
+    },
+    getEat: function(req, res, next){
         getRandomEat(function(err, result){
             res.send(result);
             return next();
