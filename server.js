@@ -23,7 +23,8 @@ server.get('/tasks', models.fetchTasks);
 server.get('/cards', models.fetchAllTrelloBoards);
 server.get('/boards', models.fetchAllTrelloBoards);
 server.get('/sync-events', models.syncEvents);
-server.get('/eats', eats.getEats);
+server.get('/eats/', eats.getEats);
+server.get('/eats/sync', eats.syncEats);
 
 
 server.listen(16906, function () {

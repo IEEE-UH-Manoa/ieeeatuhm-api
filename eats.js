@@ -1,14 +1,63 @@
-var eats = [
-    "Pho Saigon",
-    "Teddy's Bigger Burgers",
-    "McDonalds",
-    "CPK"
-]
+var request = require('request');
+var cheerio = require('cheerio');
+var _ = require('lodash');
+
+var eats = [];
+
+var scrapeEats = function(callback){
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+    page = "https://wiki.ieeeatuhm.com/doku.php?id=good_eats:start"
+
+    request(page, function (error, response, html) {
+      if (!error && response.statusCode == 200) {
+        var $ = cheerio.load(html);
+
+        // The TOC contains some trash elements that we get rid of here
+        $('#dw__toc').remove();
+
+        food_list = $('.li').not('h1,h2');
+        food_list = _.map(food_list, function(food){
+            return $(food).text().trim();
+        });
+
+        callback(null, food_list);
+      }
+      else{
+        callback(error);
+      }
+    });
+}
+
+var getRandomEat = function(callback){
+    var random = function(array){
+        return array[Math.floor(Math.random()*array.length)];
+    }
+    if(eats.length > 0) {
+        callback(null, random(eats));
+    }
+    else{
+        scrapeEats(function(err, results){
+            eats = results;
+            callback(null, random(eats));
+        });
+    }
+}
 
 module.exports = {
     getEats: function(req, res, next){
-        var random_eats =  eats[Math.floor(Math.random()*eats.length)];
-        res.send(random_eats);
-        return next();
+        getRandomEat(function(err, result){
+            res.send(result);
+            return next();
+        });
+    },
+    syncEats: function(req, res, next){
+        scrapeEats(function(err, food_list){
+            if(!err){
+                eats = food_list;
+                res.send(food_list);
+            }
+            else console.log(err);
+            return next();
+        });
     }
 }
