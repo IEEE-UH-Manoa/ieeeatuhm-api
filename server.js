@@ -1,5 +1,6 @@
 var restify = require('restify');
 var models = require(__dirname + '/models.js');
+var eats = require(__dirname + '/eats.js');
 
 var server = restify.createServer({
   name: 'ieee-app',
@@ -22,6 +23,7 @@ server.get('/tasks', models.fetchTasks);
 server.get('/cards', models.fetchAllTrelloBoards);
 server.get('/boards', models.fetchAllTrelloBoards);
 server.get('/sync-events', models.syncEvents);
+server.get('/eats', eats.getEats);
 
 
 server.listen(16906, function () {
