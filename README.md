@@ -95,3 +95,24 @@ __Description:__
 
 Returns IEEE trello boards.
 
+## GET /eat
+
+__Description:__
+
+Returns a string containing a random place to eat. Data is scraped from https://wiki.ieeeatuhm.com/doku.php?id=good_eats:start 
+and is cached in memory for api access.
+
+    "Mcdonalds"
+
+## GET /eats
+
+__Description:__
+
+Returns an array containing an N amount of random places to eat. Data is scraped from https://wiki.ieeeatuhm.com/doku.php?id=good_eats:start 
+and is cached in memory for api access. 
+
+If parmeter n is not specified in the query then the route returns an array with one result. 
+
+    ["Mcdonalds", "Jack in the Box"]
+
+
