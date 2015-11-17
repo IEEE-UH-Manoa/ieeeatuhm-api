@@ -16,6 +16,11 @@ var scrapeEats = function(callback){
         // The TOC contains some trash elements that we get rid of here
         $('#dw__toc').remove();
 
+        // Remove the desserts section so that we don't have to deal with
+        // this later on. Might be useful for when we want to have
+        // an endpoint that deals with desserts that people want.
+        $(':contains("Teas/Desserts/Acai Bowls")').next().remove();
+
         food_list = $('.li').not('h1,h2');
         food_list = _.map(food_list, function(food){
             return $(food).text().trim();
