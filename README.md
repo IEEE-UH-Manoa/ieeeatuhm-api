@@ -116,3 +116,9 @@ If parmeter n is not specified in the query then the route returns an array with
     ["Mcdonalds", "Jack in the Box"]
 
 
+## GET /eats/sync
+
+Executes a scrape and cache operation for the possible places to eat. Data is scraped from https://wiki.ieeeatuhm.com/doku.php?id=good_eats:start 
+and is cached in memory for api access. 
+
+Returns the scraped results.
